@@ -12,15 +12,15 @@ code {
     monospace;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) { */
   body {
     background: #FFF;
-    color: #333;
+    color: #33415c;
   }
-}
-@media (prefers-color-scheme: dark) {
+/* } */
+/* @media (prefers-color-scheme: dark) {
   body {
     background: #282c34;
     color: #FFF;
   }
-}
+} */

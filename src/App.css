@@ -1,4 +1,19 @@
-.App-link {
-  color: #61dafb;
+.appHeader {
+  font-size: 1.6em;
 }
 
+.contactHeader {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@media only screen and (min-width: 992px) {
+  .contactHeader {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
