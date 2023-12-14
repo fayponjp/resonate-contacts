@@ -2,6 +2,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This is hosted on Github via Github pages. 
 
+How to browse via the hosted application:
+1. Visit [Resonate-Contacts](https://fayponjp.github.io/resonate-contacts/)
+
 How to use in developer mode:
 
 1. Clone this repository
