@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { FaRegUserCircle, FaRegEnvelope, FaPhone, FaRegSmile } from "react-icons/fa";
+import { FaRegUserCircle, FaRegEnvelope, FaPhone} from "react-icons/fa";
 
 export function Contact(props) {
     const imagePath = process.env.PUBLIC_URL + '/Default-Profile.png';
@@ -32,23 +32,6 @@ export function Contact(props) {
     }
 }
 
-export function ContactModal(props) {
-    if (props.user) {
-        const user = props.user[0];
-        return (
-            <div className="contactCard">
-                <div className="contactDetail">
-                    <FaRegSmile size={'3em'}/>
-                    <div className="contactDetailName">{user.name}</div>
-                    <div className="contactDetailUserName">({user.username})</div>
-                    <div className="contactDetailEmail">{user.email}</div>
-                    <div className="contactDetailPhone">{user.phone}</div>
-                </div>
-            </div>
-        )
-    }
-}
-
 export function ContactList(props) {
     const users = props.users;
     let contactRows;    
@@ -57,7 +40,24 @@ export function ContactList(props) {
 
     useEffect(() => {
         Modal.setAppElement('#contactContainer');
-      }, []);
+        
+        const handleClickOutside = (event) => {
+            const isContactRowOrChild =
+                event.target.classList.contains("contactRow") ||
+                event.target.closest(".contactRow");
+            const isContactCardOrChild =
+                event.target.classList.contains("contactCard") ||
+                event.target.closest(".contactCard");
+            if (!isContactCardOrChild && !isContactRowOrChild) {
+              setCurrentUser(null);
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+    
     function openModal() {
         setIsOpen(true);
     }
@@ -110,7 +110,7 @@ export function ContactList(props) {
                 { contactRows }
             </div>
 
-            {currentUser && <Contact user={currentUser}/>}
+            {currentUser && <Contact user={currentUser} />}
 
             <div className="contactModal">
                 {currentUser && 
