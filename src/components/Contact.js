@@ -1,44 +1,75 @@
-import React, { useEffect, useState } from "react";
-import { FaRegUserCircle, FaRegEnvelope, FaPhone } from "react-icons/fa";
-/**
- * 
- * Header
- * Search Bar sticky
- * Contact List - Ordered By Name, collapsible
- * Contact Card - Right side on desktop, Modal on mobile
- * Letter Break
- * Recent
- */
+import React, { Fragment, useEffect, useState } from "react";
+import Modal from "react-modal";
+import { FaRegUserCircle, FaRegEnvelope, FaPhone, FaRegSmile } from "react-icons/fa";
 
 export function Contact(props) {
+    const imagePath = process.env.PUBLIC_URL + '/Default-Profile.png';
+    if (props.user) {
+        const user = props.user[0];
+        return (
+            <div className="contactCard">
+                <div className="barHeader"></div>
+                <div className="contactDetail">
+                    <div className="imgContainer">
+                        <img className="img" src={imagePath} alt={user.name}/>
+                    </div>
+
+                    <div className="contactDetailName">{user.name}</div>
+                    <div className="contactDetailUserName">({user.username})</div>
+                    <div className="contactDetailEmail">Email: {user.email}</div>
+                    <div className="contactDetailPhone">Phone: {user.phone}</div>
+                </div>
+                <div className="contactExpanded">
+                    <div>
+                        Company: {user.company.name}
+                    </div>
+                    <div>
+                        "{user.company.catchPhrase}"
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export function ContactModal(props) {
     if (props.user) {
         const user = props.user[0];
         return (
             <div className="contactCard">
                 <div className="contactDetail">
+                    <FaRegSmile size={'3em'}/>
                     <div className="contactDetailName">{user.name}</div>
+                    <div className="contactDetailUserName">({user.username})</div>
                     <div className="contactDetailEmail">{user.email}</div>
                     <div className="contactDetailPhone">{user.phone}</div>
                 </div>
             </div>
         )
     }
-
 }
 
 export function ContactList(props) {
     const users = props.users;
     let contactRows;    
     const [currentUser, setCurrentUser] = useState();
-    const [isVisible, setVisibility] = useState();
+    const [modalIsOpen, setIsOpen] = useState(true);
 
     useEffect(() => {
-        console.log("currentUser updated:", currentUser);
-      }, [currentUser]);
+        Modal.setAppElement('#contactContainer');
+      }, []);
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     const contactRowOnClick = (userId) => {
         const filteredUser = users.filter(person => person.id === userId);
         setCurrentUser(filteredUser);
+        openModal();
     }
 
     if (users) {
@@ -65,21 +96,32 @@ export function ContactList(props) {
                         <div className="phoneNumber">{user.phone}</div>
                     </div>
                     <div className="contactIcons">
-                        <FaRegEnvelope size={ "1.1em" }/>
-                        <FaPhone size={ "1.1em" }/>
+                        <FaRegEnvelope size={ "1.3em" }/>
+                        <FaPhone size={ "1.3em" }/>
                     </div>
                 </div>
-                
             )
         });
-    } 
+    }
 
     return (
         <>
-            <div className="contactList">
+            <div className="contactList" id="contactList">
                 { contactRows }
             </div>
+
             {currentUser && <Contact user={currentUser}/>}
+
+            <div className="contactModal">
+                {currentUser && 
+                <Modal
+                    isOpen={modalIsOpen}
+
+                    onRequestClose={closeModal}
+                >
+                    <Contact user={currentUser}/>
+                </Modal>}
+            </div>
         </>
     )
 }
