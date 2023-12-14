@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/resonate-contacts/static/css/main.cd2bc4b8.css",
+    "main.js": "/resonate-contacts/static/js/main.675ea83c.js",
+    "static/js/787.88e6a465.chunk.js": "/resonate-contacts/static/js/787.88e6a465.chunk.js",
+    "index.html": "/resonate-contacts/index.html",
+    "main.cd2bc4b8.css.map": "/resonate-contacts/static/css/main.cd2bc4b8.css.map",
+    "main.675ea83c.js.map": "/resonate-contacts/static/js/main.675ea83c.js.map",
+    "787.88e6a465.chunk.js.map": "/resonate-contacts/static/js/787.88e6a465.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd2bc4b8.css",
+    "static/js/main.675ea83c.js"
+  ]
+}
