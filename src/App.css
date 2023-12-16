@@ -95,6 +95,18 @@
   border-bottom:solid rgb(209, 218, 226);
 }
 
+.contactListHeader {
+  font-size:1.1em;
+  padding-left: 0.5em;
+}
+
+.contactRecentBottom {
+  border-bottom:solid rgb(209, 218, 226);
+  padding-top: 1em;
+
+  margin-bottom: 1em;
+}
+
 .contactDetailUserName {
   font-size: 0.9em;
 }
@@ -113,6 +125,17 @@
 .contactRow:hover {
   background-color: rgb(179, 194, 210);
   cursor: pointer;
+}
+
+.contactActions {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
 }
 
 .contactIcons {

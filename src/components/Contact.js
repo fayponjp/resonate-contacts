@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { FaRegUserCircle, FaRegEnvelope, FaPhone} from "react-icons/fa";
+import { FaRegUserCircle, FaRegEnvelope, FaPhone, FaPhoneAlt} from "react-icons/fa";
 
 export function Contact(props) {
     const imagePath = process.env.PUBLIC_URL + '/Default-Profile.png';
@@ -27,6 +27,10 @@ export function Contact(props) {
                         "{user.company.catchPhrase}"
                     </div>
                 </div>
+                <div className="contactActions">
+                    <FaRegEnvelope size={ "2.5em" }/>
+                    <FaPhoneAlt size={ "2.5em" }/>
+                </div>
             </div>
         )
     }
@@ -34,7 +38,8 @@ export function Contact(props) {
 
 export function ContactList(props) {
     const users = props.users;
-    let contactRows;    
+    let contactRows;  
+    let recentRows; 
     const [currentUser, setCurrentUser] = useState();
     const [modalIsOpen, setIsOpen] = useState(true);
 
@@ -102,11 +107,16 @@ export function ContactList(props) {
                 </div>
             )
         });
+        recentRows = contactRows.slice(0, 3);
     }
 
     return (
         <>
             <div className="contactList" id="contactList">
+                <div className="contactListHeader">Recents</div>
+                { recentRows }
+                <div className="contactRecentBottom"></div>
+                <div className="contactListHeader">Contacts</div>
                 { contactRows }
             </div>
 
